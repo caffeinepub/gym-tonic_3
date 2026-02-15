@@ -1,0 +1,127 @@
+{
+  "kind": "build_request",
+  "title": "Gym & Tonic: Fitness cafe brand site with membership + Tonic access pass",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a small marketing website for the brand “Gym & Tonic” that clearly presents: (1) the gym concept, (2) the supported workout styles (weight training, calisthenics, rowing/cardio), (3) the holistic fitness outlook, and (4) the membership-inclusive full-time cafe access to the in-house cafe called “Tonic”. All user-facing text must be in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "A fitness cafe called Gym & Tonic that caters to all forms of workouts including weight training, calisthenics, cardio-intensive activities like rowing, and a holistic outlook on fitness that incides oa membership-inclusive full-time access to the cafe known as 'Tonic.'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A visitor can navigate to sections/pages that describe: workout offerings (weights/calisthenics/rowing-cardio), holistic fitness positioning, and the “Tonic” cafe concept.",
+        "The site uses consistent brand naming: “Gym & Tonic” for the overall business and “Tonic” for the cafe.",
+        "All copy is in English and is readable on mobile and desktop."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement Internet Identity sign-in and an Account area that shows the signed-in user’s membership status and whether they have “Tonic” cafe access included. If the user is not signed in, the Account area must prompt them to sign in.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "membership-inclusive full-time access to the cafe known as 'Tonic.'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A user can sign in via Internet Identity and see an Account page/section.",
+        "The Account view clearly displays a membership status (e.g., Active/Inactive) and a “Tonic Access” indicator (Included/Not included).",
+        "Signed-out users see a clear call-to-action to sign in."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add a simple “Tonic Access Pass” view for signed-in members that can be used as a digital proof-of-access screen (showing the cafe name “Tonic”, the user identifier, membership state, and an “Access: Granted/Not granted” indicator).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "full-time access to the cafe known as 'Tonic.'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "For an active member with Tonic access, the pass shows “Access: Granted”.",
+        "For a non-member (or inactive member), the pass shows “Access: Not granted”.",
+        "The pass screen is usable on a phone-sized viewport without horizontal scrolling."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create backend data models and APIs to store and retrieve a user’s membership status and Tonic cafe access entitlement keyed by the user’s Internet Identity principal. Include an admin-only method (restricted to a configured admin principal list) to set/update a user’s membership and Tonic access.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "membership-inclusive full-time access to the cafe known as 'Tonic.'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend persists membership records keyed by principal and returns them to the authenticated caller.",
+        "Non-admin users cannot call admin-only mutation methods (calls are rejected/denied).",
+        "Frontend uses the backend API to display membership + Tonic entitlement in the Account and Pass views."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a coherent, distinctive visual theme appropriate for a modern fitness cafe brand (avoid blue/purple as primary colors). Define consistent typography, spacing, and UI patterns across all pages/sections.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A single, consistent theme is applied across the app (colors, typography, components).",
+        "Primary palette does not use blue/purple as the dominant brand color.",
+        "Pages/sections share consistent layout rhythm (headings, section spacing, buttons/links)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add the generated static image assets to the frontend and use them in the marketing site (hero/branding) without routing images through the backend.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated and are referenced directly by the frontend.",
+        "At least the hero image and logo are visible on the landing experience.",
+        "No backend endpoint is used to serve these static images."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not modify files under frontend/src/components/ui or other immutablePaths; compose and use existing UI components instead.",
+    "Use Internet Identity only for authentication (no third-party auth providers)."
+  ],
+  "nonGoals": [
+    "Building workout tracking, class scheduling, bookings, payments, or e-commerce flows.",
+    "Real-time features (websockets/live chat) or external database integrations.",
+    "Location/maps or geolocation features."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Minimal logo mark with text “Gym & Tonic” in a bold, modern style (gym-tonic-logo.dim_512x512.png)",
+      "Wide hero banner illustration/photo-collage style showing a gym+cafe vibe with weights/calisthenics/rowing hints (gym-tonic-hero.dim_1600x900.png)",
+      "Small set of 4 monochrome icons: dumbbell, pull-up bar/rings, rowing machine, coffee cup (gym-tonic-icons.dim_512x512.png)"
+    ],
+    "edits": []
+  }
+}

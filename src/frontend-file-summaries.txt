@@ -1,0 +1,17 @@
+{
+  "frontend/src/index.css": "Global styles with warm amber/citrus primary palette (avoiding blue/purple), charcoal backgrounds, and OKLCH color system for both light and dark modes with Inter font family.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom font families (Inter), enhanced shadows (soft, medium), and design tokens mapped to the warm fitness-cafe color palette.",
+  "frontend/src/App.tsx": "Main application component managing view state (home/account/pass) and rendering Header, Footer, and view-specific content sections.",
+  "frontend/src/components/layout/Header.tsx": "Sticky header with logo, desktop/mobile navigation, active view highlighting, and integrated login button.",
+  "frontend/src/components/layout/Footer.tsx": "Footer component with branding, copyright, and caffeine.ai attribution link with UTM tracking.",
+  "frontend/src/components/marketing/Section.tsx": "Reusable section wrapper component providing consistent container, padding, and max-width layout rhythm across all pages.",
+  "frontend/src/components/marketing/Hero.tsx": "Hero section displaying Gym & Tonic logo, headline, description, and hero banner image in a two-column responsive layout.",
+  "frontend/src/components/marketing/WorkoutStyles.tsx": "Grid of four workout type cards (weights, calisthenics, cardio/rowing, Tonic cafe) with icons and descriptions.",
+  "frontend/src/components/marketing/HolisticSection.tsx": "Three-column section explaining holistic fitness principles (mind & body, community, sustainable growth) with icons.",
+  "frontend/src/components/marketing/TonicCafeSection.tsx": "Detailed Tonic cafe section with four feature cards and a highlighted members-only benefit callout.",
+  "frontend/src/components/auth/LoginButton.tsx": "Internet Identity login/logout button with loading states, icons, and query cache clearing on logout.",
+  "frontend/src/components/account/AccountSection.tsx": "Account view showing membership status, Tonic access, profile info, with login prompt for unauthenticated users and profile setup dialog trigger.",
+  "frontend/src/components/account/ProfileSetupDialog.tsx": "Modal dialog for first-time profile setup, prompting user to enter their name with form validation and loading states.",
+  "frontend/src/components/pass/TonicAccessPass.tsx": "Digital access pass view displaying user info, membership state, and access granted/not granted status in a phone-friendly card layout.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching caller's user profile and member state, and saving user profile with proper cache invalidation."
+}

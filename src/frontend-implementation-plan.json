@@ -1,0 +1,157 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Gym & Tonic: Marketing site + Account + Tonic Access Pass (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build an English marketing experience describing the Gym & Tonic concept, workout styles, holistic positioning, and the membership-inclusive Tonic cafe access.",
+      "acceptanceCriteria": [
+        "A visitor can navigate to sections/pages that describe: workout offerings (weights/calisthenics/rowing-cardio), holistic fitness positioning, and the “Tonic” cafe concept.",
+        "The site uses consistent brand naming: “Gym & Tonic” for the overall business and “Tonic” for the cafe.",
+        "All copy is in English and is readable on mobile and desktop."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the main app shell as a small marketing site with navigable sections (concept, workout styles, holistic outlook, and Tonic cafe access) and consistent English copy; include top navigation and responsive section layouts."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Ensure the document title and basic metadata align with the “Gym & Tonic” brand and that the page is configured for good mobile readability."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add Internet Identity sign-in and an Account area that shows membership status and Tonic access entitlement, with a sign-in prompt when signed out.",
+      "acceptanceCriteria": [
+        "A user can sign in via Internet Identity and see an Account page/section.",
+        "The Account view clearly displays a membership status (e.g., Active/Inactive) and a “Tonic Access” indicator (Included/Not included).",
+        "Signed-out users see a clear call-to-action to sign in."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create a login/logout button using the selected authorization component’s frontend approach (useInternetIdentity + query cache clearing on logout). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useMemberState.ts",
+          "operation": "create",
+          "description": "Add a React Query hook that uses useActor() to fetch getCallerMemberState() and expose loading/error states for Account/Pass UI."
+        },
+        {
+          "path": "frontend/src/hooks/useCallerUserProfile.ts",
+          "operation": "create",
+          "description": "Add a React Query hook for getCallerUserProfile() following the selected authorization component guidance to prevent profile-setup flash. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/account/AccountSection.tsx",
+          "operation": "create",
+          "description": "Create an Account section that: (1) prompts signed-out users to sign in, (2) for signed-in users shows membership status + Tonic Access, and (3) requests a first-time display name via saveCallerUserProfile() as per the selected authorization component guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Account section into the marketing site navigation and render it as a dedicated section/page area; include LoginButton placement and ensure signed-out prompt is visible."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Provide a signed-in “Tonic Access Pass” screen that displays cafe name, user identifier, membership state, and access granted/not granted indicator.",
+      "acceptanceCriteria": [
+        "For an active member with Tonic access, the pass shows “Access: Granted”.",
+        "For a non-member (or inactive member), the pass shows “Access: Not granted”.",
+        "The pass screen is usable on a phone-sized viewport without horizontal scrolling."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/pass/TonicAccessPass.tsx",
+          "operation": "create",
+          "description": "Create a phone-friendly access pass view that shows: “Tonic”, a user identifier (prefer profile name; optionally include a shortened principal), membership state, and “Access: Granted/Not granted” derived from getCallerMemberState(); show sign-in CTA if signed out."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the Tonic Access Pass into the main navigation and ensure it is reachable as a distinct section/page area (without horizontal scrolling on small viewports)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a cohesive modern fitness-cafe theme with consistent typography/spacing and a primary palette that is not blue/purple-dominant.",
+      "acceptanceCriteria": [
+        "A single, consistent theme is applied across the app (colors, typography, components).",
+        "Primary palette does not use blue/purple as the dominant brand color.",
+        "Pages/sections share consistent layout rhythm (headings, section spacing, buttons/links)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme tokens (CSS variables used by Tailwind/shadcn styling) and base typography/spacing rules using a warm/neutral/energy palette (e.g., charcoal + off-white + citrus/amber accents) that avoids blue/purple as primary."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust/extend Tailwind theme settings as needed to support the Gym & Tonic brand theme (typography scale, spacing rhythm, shadows), ensuring the primary color mapping corresponds to the non-blue/purple palette."
+        },
+        {
+          "path": "frontend/src/components/marketing/Section.tsx",
+          "operation": "create",
+          "description": "Create a small reusable section wrapper to enforce consistent layout rhythm (heading styles, max width, vertical spacing) across marketing, Account, and Pass sections."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Adopt the shared section/layout primitives so all site areas follow consistent UI patterns (buttons/links, headings, spacing)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add and display the generated logo/hero/icons as static frontend assets within the marketing experience (no backend image serving).",
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated and are referenced directly by the frontend.",
+        "At least the hero image and logo are visible on the landing experience.",
+        "No backend endpoint is used to serve these static images."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/gym-tonic-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset at the required path for direct frontend usage."
+        },
+        {
+          "path": "frontend/public/assets/generated/gym-tonic-hero.dim_1600x900.png",
+          "operation": "create",
+          "description": "Add the generated wide hero banner asset at the required path for direct frontend usage."
+        },
+        {
+          "path": "frontend/public/assets/generated/gym-tonic-icons.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated monochrome icon set asset at the required path for direct frontend usage."
+        },
+        {
+          "path": "frontend/src/components/marketing/Hero.tsx",
+          "operation": "create",
+          "description": "Create a hero/branding component that directly references frontend/public/assets/generated/gym-tonic-hero.dim_1600x900.png and frontend/public/assets/generated/gym-tonic-logo.dim_512x512.png (no backend routing)."
+        },
+        {
+          "path": "frontend/src/components/marketing/WorkoutStyles.tsx",
+          "operation": "create",
+          "description": "Create a workout styles section (weights, calisthenics, rowing/cardio) and visually incorporate the static icon sheet at frontend/public/assets/generated/gym-tonic-icons.dim_512x512.png for the four icons."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire Hero and WorkoutStyles into the landing/marketing flow so the hero image and logo are visible on initial load and icons support the workout offerings section."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Plan an app/project for a fitness cafe brand called \"Gym & Tonic\" that supports multiple workout types (weight training, calisthenics, rowing/cardio) with a holistic fitness focus and membership-inclusive full-time access to an in-house cafe called \"Tonic.\"",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Minimal logo mark with text “Gym & Tonic” in a bold, modern style (gym-tonic-logo.dim_512x512.png)\n- Wide hero banner illustration/photo-collage style showing a gym+cafe vibe with weights/calisthenics/rowing hints (gym-tonic-hero.dim_1600x900.png)\n- Small set of 4 monochrome icons: dumbbell, pull-up bar/rings, rowing machine, coffee cup (gym-tonic-icons.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-small-marketing-website-for-the-brand-gym-tonic-that-clearly-presents-1-the-gym-concept-2-the-supported-workout-styles-weight-training-calisthenics-rowing-cardio-3-the-holistic-fitness-outlook-and-4-the-membership-inclusive-full-time-cafe-access-to-the-in-house-cafe-called-tonic-all-user-facing-text-must-be-in-english",
+      "title": "Create a small marketing website for the brand “Gym & Tonic” that clearly presents: (1) the gym concept, (2) the supported workout styles (weight training, calisthenics, rowing/cardio), (3) the holistic fitness outlook, and (4) the membership-inclusive full-time cafe access to the in-house cafe called “Tonic”. All user-facing text must be in English.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-internet-identity-sign-in-and-an-account-area-that-shows-the-signed-in-user-s-membership-status-and-whether-they-have-tonic-cafe-access-included-if-the-user-is-not-signed-in-the-account-area-must-prompt-them-to-sign-in",
+      "title": "Implement Internet Identity sign-in and an Account area that shows the signed-in user’s membership status and whether they have “Tonic” cafe access included. If the user is not signed in, the Account area must prompt them to sign in.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-tonic-access-pass-view-for-signed-in-members-that-can-be-used-as-a-digital-proof-of-access-screen-showing-the-cafe-name-tonic-the-user-identifier-membership-state-and-an-access-granted-not-granted-indicator",
+      "title": "Add a simple “Tonic Access Pass” view for signed-in members that can be used as a digital proof-of-access screen (showing the cafe name “Tonic”, the user identifier, membership state, and an “Access: Granted/Not granted” indicator).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-distinctive-visual-theme-appropriate-for-a-modern-fitness-cafe-brand-avoid-blue-purple-as-primary-colors-define-consistent-typography-spacing-and-ui-patterns-across-all-pages-sections",
+      "title": "Apply a coherent, distinctive visual theme appropriate for a modern fitness cafe brand (avoid blue/purple as primary colors). Define consistent typography, spacing, and UI patterns across all pages/sections.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-generated-static-image-assets-to-the-frontend-and-use-them-in-the-marketing-site-hero-branding-without-routing-images-through-the-backend",
+      "title": "Add the generated static image assets to the frontend and use them in the marketing site (hero/branding) without routing images through the backend.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Define core concept and offerings for Gym & Tonic fitness cafe (workout types: weights, calisthenics, cardio/rowing; holistic fitness positioning).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Support membership-inclusive full-time access to the cafe area \"Tonic\" (membership policy/entitlements).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create backend data models and APIs to store and retrieve a user’s membership status and Tonic cafe access entitlement keyed by the user’s Internet Identity principal. Include an admin-only method (restricted to a configured admin principal list) to set/update a user’s membership and Tonic access.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Gym & Tonic",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,106 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T05:24:30.975Z",
+  "summary": "Diff adds a marketing-style frontend (Hero/Workout/Holistic/Tonic sections), Internet Identity-based auth hooks, Account and Tonic Pass views, and a Motoko backend with membership state storage plus authorization checks. However, some required behaviors/assets are not evidenced (notably generated image/icon assets, admin principal configuration, sign-in CTAs, and correct pass access logic).",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Signed-out users see a clear call-to-action to sign in in the Account area.",
+      "reason": "The signed-out Account view includes explanatory text but no visible sign-in button/link in the shown code (e.g., no LoginButton rendered).",
+      "evidence": [
+        "frontend/src/components/account/AccountSection.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Pass access indicator must be Granted only for an active member with Tonic access; Not granted for non-member/inactive.",
+      "reason": "Pass logic sets `hasAccess = memberState?.hasTonicAccess || false` and does not also require `hasMemberAccess` to be true, so an inactive member with tonic access could incorrectly get Granted.",
+      "evidence": [
+        "frontend/src/components/pass/TonicAccessPass.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Signed-out users should be prompted to sign in for the Tonic Access Pass view (clear CTA).",
+      "reason": "The signed-out Pass view includes explanatory text but no sign-in call-to-action control is shown (e.g., no LoginButton).",
+      "evidence": [
+        "frontend/src/components/pass/TonicAccessPass.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Admin-only method restricted to a configured admin principal list to set/update a user’s membership and Tonic access.",
+      "reason": "Backend checks `#admin` permission, but the diff does not show any configured admin principal list or admin initialization mechanism (only an AccessControl state init and a frontend call to `_initializeAccessControlWithSecret`).",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Add the generated static image assets under frontend/public/assets/generated (logo, hero, and a 4-icon monochrome set) and reference them directly.",
+      "reason": "Frontend references logo/hero paths, but the diff does not include the actual image files under `frontend/public/assets/generated`, and there is no evidence of using the required 4-icon monochrome asset file (`gym-tonic-icons.dim_512x512.png`).",
+      "evidence": [
+        "frontend/src/components/layout/Header.tsx",
+        "frontend/src/components/layout/Footer.tsx",
+        "frontend/src/components/marketing/Hero.tsx",
+        "frontend/src/components/marketing/WorkoutStyles.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile model and profile setup dialog (name capture) with backend profile storage APIs.",
+      "reason": "BuildRequest did not request user profile creation/storage; only membership status and Tonic entitlement were required.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/account/ProfileSetupDialog.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "description": "Admin-token/secret URL parameter handling to initialize access control from the frontend.",
+      "reason": "BuildRequest asked for admin-only updates restricted to an admin principal list; it did not request a secret-token initialization flow passed via URL params/session.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/utils/urlParams.ts"
+      ]
+    },
+    {
+      "description": "Caffeine.ai referral footer link.",
+      "reason": "Not requested by the BuildRequest requirements/non-goals.",
+      "evidence": [
+        "frontend/src/components/layout/Footer.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/account/AccountSection.tsx",
+    "frontend/src/components/account/ProfileSetupDialog.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/layout/Footer.tsx",
+    "frontend/src/components/layout/Header.tsx",
+    "frontend/src/components/marketing/Hero.tsx",
+    "frontend/src/components/marketing/HolisticSection.tsx",
+    "frontend/src/components/marketing/Section.tsx",
+    "frontend/src/components/marketing/TonicCafeSection.tsx",
+    "frontend/src/components/marketing/WorkoutStyles.tsx",
+    "frontend/src/components/pass/TonicAccessPass.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
